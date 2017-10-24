@@ -267,7 +267,7 @@ void OpenGLWidget::destroyVBOs()
 void OpenGLWidget::animate()
 {
     float elapsedTime = time.restart() / 1000.0f;
-    // Change player Y position
+    // Change player X and Y position
     playerPosX += playerPosXOffset * elapsedTime;
     playerPosY += playerPosYOffset * elapsedTime;
 
@@ -292,8 +292,8 @@ void OpenGLWidget::animate()
         targetPosY = 0.8f;
 
     // Update target
-    targetPosX += playerPosX * elapsedTime*2/3;
-    targetPosY += playerPosY * elapsedTime*2/3;
+    targetPosX += playerPosX * elapsedTime * numHits/15;
+    targetPosY += playerPosY * elapsedTime * numHits/15;
     //targetPosY += targetPosYOffset * elapsedTime*2/3;
 
     if (targetPosYOffset > 0)
@@ -360,9 +360,9 @@ void OpenGLWidget::animate()
     }
     totalTime += elapsedTime;
     // Increase the size of targe if nothing is done
-    if ( (int) totalTime % 5 == 0 && totalTime > 5) {
+    if ( (int) totalTime % 3 == 0 && totalTime > 3) {
         targetSize += 0.1;
-        totalTime /= 5;
+        totalTime /= 3;
         if(targetOffset < 0.2f)
             targetOffset += 0.05f;
     }
@@ -372,7 +372,7 @@ void OpenGLWidget::animate()
         playerSize = 0;
         targetSize = 0;
         QOpenGLWidget::setEnabled(false);
-        emit updateHitsLabel(QString("GAME OVER | Score: %1").arg(numHits));
+        emit updateHitsLabel(QString("GAME OVER :( Score: %1").arg(numHits));
         QOpenGLWidget::setEnabled(true);
         QOpenGLWidget::setEnabled(false);
     }
@@ -420,6 +420,7 @@ void OpenGLWidget::keyPressEvent(QKeyEvent *event)
     }
 }
 
+
 void OpenGLWidget::keyReleaseEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_W)
@@ -434,6 +435,7 @@ void OpenGLWidget::keyReleaseEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_D)
         playerPosXOffset = 0;
 }
+
 
 void OpenGLWidget::setShootingParameters()
 {
