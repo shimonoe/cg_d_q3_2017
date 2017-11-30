@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/shaders">
+        <file>vphong.glsl</file>
+        <file>fphong.glsl</file>
+        <file>fcar.glsl</file>
+        <file>fbarriere.glsl</file>
+        <file>froad.glsl</file>
+        <file>fgastank.glsl</file>
+        <file>froadstrip.glsl</file>
+        <file>fgrass.glsl</file>
+    </qresource>
+    <qresource prefix="/models">
+        <file>car.off</file>
+        <file>barriere.off</file>
+        <file>road.off</file>
+        <file>gastank.off</file>
+        <file>roadstrip.off</file>
+        <file>grass.off</file>
+    </qresource>
+</RCC>
